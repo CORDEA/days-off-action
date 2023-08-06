@@ -1,0 +1,21 @@
+{
+  "name": "holidays-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/main.js",
+    "format": "prettier --write src"
+  },
+  "author": "Yoshihiro Tanaka <contact@cordea.jp>",
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
+    "prettier": "3.0.1"
+  }
+}
