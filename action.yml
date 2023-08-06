@@ -1,0 +1,29 @@
+name: Holidays
+author: Yoshihiro Tanaka
+description: Check if the date is a holiday.
+branding:
+  color: blue
+  icon: code
+inputs:
+  date:
+    required: true
+    description: Target date.
+  country:
+    required: true
+    description: The country supported by date-holidays.
+  state:
+    description: The state supported by date-holidays.
+  region:
+    description: The region supported by date-holidays.
+  include-types:
+    description: Target holiday types separated by commas. "public", "bank", "school", "optional" or "observance".
+    default: public
+  result-encoding:
+    description: The encoding of the result. "bool" or "json".
+    default: bool
+outputs:
+  result:
+    description: Result.
+runs:
+  using: node16
+  main: dist/index.js
