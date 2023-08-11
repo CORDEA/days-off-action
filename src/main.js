@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import Holidays from "date-holidays";
+import HolidaysAction from "./holidays.js";
 
 async function main() {
   const rawDate = core.getInput("date", { required: true });
@@ -10,10 +10,12 @@ async function main() {
   const includeTypes = core.getInput("include-types").split(",");
   const encoding = core.getInput("result-encoding");
 
-  const holidays = new Holidays(country, state, region);
-  const holiday = (holidays.isHoliday(date) || []).filter((e) =>
-    includeTypes.includes(e.type),
-  );
+  const holiday = new HolidaysAction(
+    country,
+    state,
+    region,
+    includeTypes,
+  ).execute(date);
   switch (encoding ? encoding : "json") {
     case "json":
       core.setOutput("result", JSON.stringify(holiday));
