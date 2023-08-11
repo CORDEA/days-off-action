@@ -11,16 +11,15 @@ async function main() {
   const encoding = core.getInput("result-encoding");
 
   const holidays = new Holidays(country, state, region);
-  const holiday = holidays.isHoliday(date);
+  const holiday = (holidays.isHoliday(date) || []).filter((e) =>
+    includeTypes.includes(e.type),
+  );
   switch (encoding ? encoding : "json") {
     case "json":
-      core.setOutput(
-        "result",
-        JSON.stringify(holiday === false ? {} : holiday),
-      );
+      core.setOutput("result", JSON.stringify(holiday));
       break;
     case "bool":
-      core.setOutput("result", holiday !== false);
+      core.setOutput("result", holiday.length !== 0);
       break;
     default:
       throw new Error("Unsupported encoding type.");
