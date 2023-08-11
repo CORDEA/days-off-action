@@ -18,6 +18,8 @@ inputs:
   include-types:
     description: Target holiday types separated by commas. "public", "bank", "school", "optional" or "observance".
     default: public
+  weekend:
+    description: Days off separated by commas. Accepts numbers from 0 for Sunday to 6 for Saturday.
   result-encoding:
     description: The encoding of the result. "bool" or "json".
     default: bool

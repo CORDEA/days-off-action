@@ -8,6 +8,10 @@ async function main() {
   const state = core.getInput("state");
   const region = core.getInput("region");
   const includeTypes = core.getInput("include-types").split(",");
+  const weekend = core
+    .getInput("weekend")
+    .split(",")
+    .map((e) => parseInt(e));
   const encoding = core.getInput("result-encoding");
 
   const holiday = new HolidaysAction(
@@ -15,6 +19,7 @@ async function main() {
     state,
     region,
     includeTypes,
+    weekend,
   ).execute(date);
   switch (encoding ? encoding : "json") {
     case "json":
