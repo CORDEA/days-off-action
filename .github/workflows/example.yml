@@ -1,0 +1,22 @@
+name: Example
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date"
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - id: response
+        uses: ./
+        with:
+          date: "${{ inputs.date }}"
+          country: "US"
+          weekend: "0,6"
+          result-encoding: json
