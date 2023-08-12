@@ -2,8 +2,8 @@ name: Days Off
 author: Yoshihiro Tanaka
 description: Check if the date is a day off.
 branding:
-  color: blue
-  icon: code
+  color: green
+  icon: bell-off
 inputs:
   date:
     required: true
