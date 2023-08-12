@@ -1,6 +1,6 @@
 import Holidays from "date-holidays";
 
-class HolidaysAction {
+class DaysOffAction {
   constructor(country, state, region, includeTypes, weekend) {
     this.holidays = new Holidays(country, state, region);
     this.includeTypes = includeTypes;
@@ -21,4 +21,4 @@ class HolidaysAction {
   }
 }
 
-export default HolidaysAction;
+export default DaysOffAction;

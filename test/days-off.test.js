@@ -1,11 +1,11 @@
-import HolidaysAction from "../src/holidays";
+import DaysOffAction from "../src/days-off";
 import Holidays from "date-holidays";
 import * as assert from "assert";
 
-describe("HolidaysAction#execute", () => {
+describe("DaysOffAction#execute", () => {
   it("New Year's Day - public only", () => {
     const date = new Date("2020-01-01T12:00:00.000Z");
-    const result = new HolidaysAction("US", "", "", ["public"], []).execute(
+    const result = new DaysOffAction("US", "", "", ["public"], []).execute(
       date,
     );
     const expected = new Holidays("US").isHoliday(date);
@@ -15,7 +15,7 @@ describe("HolidaysAction#execute", () => {
 
   it("New Year's Eve - public only", () => {
     const date = new Date("2020-01-01T00:00:00.000Z");
-    const result = new HolidaysAction("US", "", "", ["public"], []).execute(
+    const result = new DaysOffAction("US", "", "", ["public"], []).execute(
       date,
     );
 
@@ -24,7 +24,7 @@ describe("HolidaysAction#execute", () => {
 
   it("New Year's Eve - observance only", () => {
     const date = new Date("2020-01-01T00:00:00.000Z");
-    const result = new HolidaysAction("US", "", "", ["observance"], []).execute(
+    const result = new DaysOffAction("US", "", "", ["observance"], []).execute(
       date,
     );
 
@@ -33,7 +33,7 @@ describe("HolidaysAction#execute", () => {
 
   it("Independence Day - US", () => {
     const date = new Date("2020-07-04T04:00:00.000-08:00");
-    const result = new HolidaysAction("US", "", "", ["public"], []).execute(
+    const result = new DaysOffAction("US", "", "", ["public"], []).execute(
       date,
     );
 
@@ -42,7 +42,7 @@ describe("HolidaysAction#execute", () => {
 
   it("Independence Day - JP", () => {
     const date = new Date("2020-07-04T21:00:00.000+09:00");
-    const result = new HolidaysAction("JP", "", "", ["public"], []).execute(
+    const result = new DaysOffAction("JP", "", "", ["public"], []).execute(
       date,
     );
 
@@ -51,7 +51,7 @@ describe("HolidaysAction#execute", () => {
 
   it("Saturday - matches weekend", () => {
     const date = new Date("2020-02-01T10:00:00.000+10:00");
-    const result = new HolidaysAction("AU", "", "", [], [6]).execute(date);
+    const result = new DaysOffAction("AU", "", "", [], [6]).execute(date);
 
     assert.equal(result.length, 1);
     assert.equal(result[0].type, "weekend");
@@ -59,7 +59,7 @@ describe("HolidaysAction#execute", () => {
 
   it("Saturday - does not match weekend", () => {
     const date = new Date("2020-02-01T10:00:00.000+10:00");
-    const result = new HolidaysAction("AU", "", "", ["public"], [0]).execute(
+    const result = new DaysOffAction("AU", "", "", ["public"], [0]).execute(
       date,
     );
 
@@ -68,7 +68,7 @@ describe("HolidaysAction#execute", () => {
 
   it("Labor Day & weekend", () => {
     const date = new Date("2020-09-07T12:00:00.000Z");
-    const result = new HolidaysAction("US", "", "", ["public"], [1, 6]).execute(
+    const result = new DaysOffAction("US", "", "", ["public"], [1, 6]).execute(
       date,
     );
 
